@@ -40,6 +40,24 @@
 			$stmt->execute();
 			return $stmt->get_result()->fetch_assoc();
 		}
+		//facebook and google
+		public function createUserWithOtherAccount($name,$email,$photourl,$phoneno,$address){
+			$stmt=$this->con->prepare("INSERT INTO `tbl_user_other_accounts` (`id`, `name`, `email`, `photoUrl`, `phoneNo`, `address`) VALUES (NULL, ?, ?, ?, ?, ?);");
+			$stmt->bind_param("sssss",$name,$email,$photourl,$phoneno,$address);
+			if($stmt->execute()){
+				return $this->getUserByEmail('tbl_user_other_accounts',$email);
+			}else{
+				return null;
+			}
+		}
+		
+		public function isEmailWithPasswordExist($email,$phoneNo){
+			$stmt=$this->con->prepare("select id from tbl_user where email=? AND phoneNo=?;");
+			$stmt->bind_param("ss",$email,$phoneNo);
+			$stmt->execute();
+			$stmt->store_result();
+			return $stmt->num_rows()>0;
+		}
 		
 		public function isUserExist($tableName,$email){
 			$stmt = $this->con->prepare("Select id from $tableName where email=?;");
