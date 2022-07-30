@@ -59,6 +59,17 @@
 			return $stmt->num_rows()>0;
 		}
 		
+		public function changePassword($email,$pass){
+			$password=md5($pass);
+			$stmt=$this->con->prepare("UPDATE `tbl_user` SET password = ? WHERE email=?;");
+			$stmt->bind_param("ss",$password,$email);
+			if($stmt->execute()){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		
 		public function isUserExist($tableName,$email){
 			$stmt = $this->con->prepare("Select id from $tableName where email=?;");
 			$stmt->bind_param("s",$email);
