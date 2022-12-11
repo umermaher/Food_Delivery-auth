@@ -4,7 +4,7 @@ This code has been written almost six months ago. I was learning to write my own
 # Code
 * Login user
 * Register user
-* Social login(Google, Facebook)
+* Social login (Google, Facebook)
 * change password
 * Get user data
 * Check user existance
