@@ -1,5 +1,5 @@
 # Food_Delivery-auth
-This code has been written almost six ago. I was learning to write my own backend(server side).
+This code has been written almost six months ago. I was learning to write my own backend(server side).
 
 # Code
 * Login user
